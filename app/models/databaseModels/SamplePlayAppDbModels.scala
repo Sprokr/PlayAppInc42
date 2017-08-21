@@ -6,10 +6,11 @@ import java.util.UUID
 import com.google.inject.Inject
 import play.api.db.NamedDatabase
 import play.api.db.slick.DatabaseConfigProvider
-import requestDS.{AddProfileRequestData}
-import slick.driver.MySQLDriver
+import requestDS.AddProfileRequestData
+import slick.driver.{JdbcProfile, MySQLDriver}
 import models.database.SamplePlayAppDatabase.{fundingInfoTable, _}
 import models.entities._
+import play.api.Play
 import play.api.libs.json.{JsString, JsValue}
 import responseDS.{ErrorResponseData, GetProfileResponseData, ResultPartResponse}
 import play.api.Play._
@@ -20,9 +21,10 @@ import scala.concurrent.duration.Duration
   * Created by sprokr on 21/08/17.
   */
 object SamplePlayAppDbModels {
-  @Inject()
-  @NamedDatabase("Inc42") val dbConfig = DatabaseConfigProvider.get[MySQLDriver]
-
+  //@Inject()
+  //@NamedDatabase("Inc42")
+  //val dbConfig = DatabaseConfigProvider.get[MySQLDriver]
+  val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
   import dbConfig.driver.api._
 
 
