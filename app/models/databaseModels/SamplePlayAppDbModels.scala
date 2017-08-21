@@ -35,7 +35,7 @@ object SamplePlayAppDbModels {
     }, profile.logo match {
       case None => ""
       case x => x.get
-    }, Timestamp.valueOf(profile.foundedOn))
+    }, Timestamp.valueOf(profile.foundedOn+ " 00:00:00"))
 
     val companyId: Int = Await.result(dbConfig.db.run(
       companyInfoTable returning companyInfoTable.map(_.id) += company
@@ -77,7 +77,10 @@ object SamplePlayAppDbModels {
         }
       }
 
-      FundingInfoEntity(1, eachFund.amount, companyId, investorId, stageId, Timestamp.valueOf(eachFund.date))
+      val fund = FundingInfoEntity(1, eachFund.amount, companyId, investorId, stageId, Timestamp.valueOf(eachFund.date+ " 00:00:00"))
+      val funding = Await.result(dbConfig.db.run(
+        fundingInfoTable  += fund
+      ), Duration.Inf)
     }
 
     val social = SocialInfoEntity(1, companyId,

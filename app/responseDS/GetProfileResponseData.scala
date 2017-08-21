@@ -41,7 +41,7 @@ object GetProfileResponseData{
 
     val markets: List[String] = (for(eachMkt <- marketsInfo) yield eachMkt.name).toList
 
-    val funds: List[FundingInfo] = (for(eachFI <- fundingInfo) yield FundingInfo(eachFI._2.amount, eachFI._2.date.toString, eachFI._1.name, eachFI._3.name)).toList
+    val funds: List[FundingInfo] = (for(eachFI <- fundingInfo) yield FundingInfo(eachFI._2.amount, eachFI._2.date.toString.split(" ")(0), eachFI._1.name, eachFI._3.name)).toList
 
 
 
@@ -54,7 +54,7 @@ object GetProfileResponseData{
         case x => Some(x)
       },
       markets,
-      company.founded_on.toString,
+      company.founded_on.toString.split(" ")(0),
       company.website match{
         case "" => None
         case x => Some(x)

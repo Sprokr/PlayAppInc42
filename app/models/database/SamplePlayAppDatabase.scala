@@ -70,7 +70,7 @@ class FundingInfo(tag: Tag) extends Table[FundingInfoEntity](tag, "funding_info"
   def amount      = column[Int]("amount", O.SqlType("INT(11)"))
   def investorId      = column[Int]("investor_id", O.SqlType("INT(11)"))
   def stageId      = column[Int]("stage_id", O.SqlType("INT(11)"))
-  def date = column[Timestamp]("founded_on", O.SqlType("TIMESTAMP"))
+  def date = column[Timestamp]("date", O.SqlType("TIMESTAMP"))
   def * =
     (id,
       amount,
@@ -92,7 +92,7 @@ class StagesInfo(tag: Tag) extends Table[StagesInfoEntity](tag, "stages_info") {
       description) <> (StagesInfoEntity.tupled, StagesInfoEntity.unapply)
 }
 
-class CompanyMarketsMap(tag: Tag) extends Table[CompanyMarketsMapEntity](tag, "company_markets_map") {
+class CompanyMarketsMap(tag: Tag) extends Table[CompanyMarketsMapEntity](tag, "company_market_map") {
   def id       = column[Int]("id", O.PrimaryKey, O.AutoInc, O.SqlType("INT(11)"))
   def companyId      = column[Int]("company_id", O.SqlType("INT(11)"))
   def marketId      = column[Int]("market_id", O.SqlType("INT(11)"))
