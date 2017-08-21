@@ -42,11 +42,11 @@ object AddProfileRequestData{
   def uploadLogo(request : Request[MultipartFormData[TemporaryFile]]): Option[String] = {
     request.body.file("file").map { file =>
       val filename = file.filename
-      val filePath: String = "http://108.59.80.115"+s"/tmp/${UUID.randomUUID}_$filename"
+      val filePath: String = s"/tmp/${UUID.randomUUID}_$filename"
       val uniqueFile = new File(filePath)
 
       file.ref.moveTo(uniqueFile, true)
-      filePath
+      s"http://108.59.80.115"+filePath
 
     }
   }
