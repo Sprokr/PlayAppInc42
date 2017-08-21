@@ -21,7 +21,7 @@ import scala.concurrent.duration.Duration
   */
 object SamplePlayAppDbModels {
   @Inject()
-  @NamedDatabase("samplePlayApp") val dbConfig = DatabaseConfigProvider.get[MySQLDriver]
+  @NamedDatabase("Inc42") val dbConfig = DatabaseConfigProvider.get[MySQLDriver]
 
   import dbConfig.driver.api._
 
