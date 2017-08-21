@@ -1,0 +1,4 @@
+POST    /                           controllers.Application.index
+GET     /                           controllers.Application.index
+POST    /addProfile                 controllers.Application.addProfile()
+GET     /getProfile/:profileId      controllers.Application.getProfile(profileId: String ?= "")
